@@ -11,8 +11,6 @@ contract NervosBridge {
     
     uint256 maxAmount = 1000 ;
 
-    using SafeMath for uint256;
-
     //reveive token from other contracts
     receive() payable external{
         emit Received(msg.sender,msg.value);
