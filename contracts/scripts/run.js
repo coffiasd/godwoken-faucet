@@ -1,7 +1,7 @@
 const main = async () => {
     // The first return is the deployer, the second is a random account
     const [owner, randomPerson] = await hre.ethers.getSigners();
-    const godWokenContractFactory = await hre.ethers.getContractFactory('faucet');
+    const godWokenContractFactory = await hre.ethers.getContractFactory('NervosBridge');
     const godwokenContract = await godWokenContractFactory.deploy();
     await godwokenContract.deployed();
     console.log("Contract deployed to:", godwokenContract.address);

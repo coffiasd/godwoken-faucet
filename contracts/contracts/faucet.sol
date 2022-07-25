@@ -2,8 +2,6 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-
 contract NervosBridge {
     event Received(address, uint256);
 
@@ -19,12 +17,25 @@ contract NervosBridge {
 
     //withdraw token with limited amount
     function withDrawSomeToken() public {
+        address payable recipient = payable(msg.sender);
+
+        //check the balance of this contract is enough to withdraw
+        require(
+            address(this).balance >= eachWalletMaxAmount,
+            "not enough balance"
+        );
+
+        //check the limited of each wallet is enough to withdraw
         require(
             balances[msg.sender] <=
                 eachWalletMaxAmount - eachWalletRequestAmount,
             "reached max amount"
         );
-        msg.sender.transfer(amount);
+
+        //withdraw
+        recipient.transfer(eachWalletRequestAmount);
+
+        //update the balance of wallet
         balances[msg.sender] = balances[msg.sender] + eachWalletRequestAmount;
     }
 }
