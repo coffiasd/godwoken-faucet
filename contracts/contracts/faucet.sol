@@ -7,8 +7,8 @@ contract NervosBridge {
 
     mapping(address => uint256) balances;
 
-    uint256 eachWalletMaxAmount = 1000;
-    uint256 eachWalletRequestAmount = 10;
+    uint256 eachWalletMaxAmount = 1000 ether;
+    uint256 eachWalletRequestAmount = 100 ether;
 
     //reveive token from other contracts
     receive() external payable {
@@ -17,11 +17,9 @@ contract NervosBridge {
 
     //withdraw token with limited amount
     function withDrawSomeToken() public {
-        address payable recipient = payable(msg.sender);
-
         //check the balance of this contract is enough to withdraw
         require(
-            address(this).balance >= eachWalletMaxAmount,
+            address(this).balance > eachWalletRequestAmount,
             "not enough balance"
         );
 
@@ -33,7 +31,7 @@ contract NervosBridge {
         );
 
         //withdraw
-        recipient.transfer(eachWalletRequestAmount);
+        payable(msg.sender).transfer(eachWalletRequestAmount);
 
         //update the balance of wallet
         balances[msg.sender] = balances[msg.sender] + eachWalletRequestAmount;
