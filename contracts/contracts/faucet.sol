@@ -19,9 +19,12 @@ contract NervosBridge is IERC20 {
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint256)) allowed;
 
-    uint256 eachWalletMaxAmount = 1000 ether;
-    uint256 eachWalletRequestAmount = 100 ether;
+    uint256 eachWalletMaxAmount = 10 ether;
+    uint256 eachWalletRequestAmount = 1 ether;
     uint256 _totalSupply;
+
+    string public name = "FKToken";
+    string public symbol = "FKT";
 
     constructor(uint256 total) {
         _totalSupply = total;
@@ -37,6 +40,11 @@ contract NervosBridge is IERC20 {
     // set up the total supply of the contract
     function totalSupply() public view returns (uint256) {
         return balances[msg.sender];
+    }
+
+    // return the balance of the address(this)
+    function balanceOfContracts() public view returns (uint256) {
+        return address(this).balance;
     }
 
     // return the balance of the address
