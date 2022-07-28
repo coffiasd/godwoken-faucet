@@ -9,7 +9,7 @@ const main = async () => {
   await godwokenContract.deployed();
   console.log("Contract deployed to:", godwokenContract.address);
   console.log("Contract deployed by:", owner.address);
-  console.log("randomPerson:", randomPerson.SignerWithAddress.address);
+  // console.log("randomPerson:", randomPerson.address);
 }
 
 const runMain = async () => {

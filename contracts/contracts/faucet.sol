@@ -18,6 +18,7 @@ contract NervosBridge is IERC20 {
 
     mapping(address => uint256) balances;
     mapping(address => mapping(address => uint256)) allowed;
+    mapping(address => uint256) withDraws;
 
     uint256 eachWalletMaxAmount = 10 ether;
     uint256 eachWalletRequestAmount = 1 ether;
@@ -143,7 +144,7 @@ contract NervosBridge is IERC20 {
 
         //check the limited of each wallet is enough to withdraw
         require(
-            balances[msg.sender] <=
+            withDraws[msg.sender] <=
                 eachWalletMaxAmount - eachWalletRequestAmount,
             "reached max amount"
         );
@@ -152,7 +153,7 @@ contract NervosBridge is IERC20 {
         payable(msg.sender).transfer(eachWalletRequestAmount);
 
         //update the balance of wallet
-        balances[msg.sender] = balances[msg.sender] + eachWalletRequestAmount;
+        withDraws[msg.sender] = withDraws[msg.sender] + eachWalletRequestAmount;
     }
 
     function requestusdtToken(uint256 amount) external payable virtual {
