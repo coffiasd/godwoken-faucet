@@ -1,12 +1,25 @@
 # Contracts
 
-    our smart contarct written by solidity and then deploy with hardhat.
-    Test net is nervos godwoken
-    Our deployed contract address:0xaba3465b11e43ba29c8993984b0fc6e68b3a5f44
+## Stack
+
+    our smart contarct written by solidity and then deployed with hardhat.
+
+## blockchain net
+
+    Test net is deploy on nervos godwoken v1.1.
+
+## local net
+
+    npx hardhad node
 
 # website
 
-    our test website page is builded with replit.com.
-    go to this url:"https://nervos-godwoken-test-page.coiiasd88.repl.co/" and check it out broo.
+## stack
+
+    Uur test website page is builded with replit.com.
     first and foremost you need to connect your metamask wallet
     and then click the withdraw button to get token from this smart contract address
+
+## online url
+
+    https://nervos-godwoken-test-page.coiiasd88.repl.co/
